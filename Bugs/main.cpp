@@ -31,5 +31,5 @@ int main(int argc, char* argv[])
 	}
 
 	GameWorld* gw = createStudentWorld(assetDirectory);
-	Game().run(argc, argv, gw, "Bugs");
+	Game().run(argc, argv, gw, "Bugs", LIGHT);
 }

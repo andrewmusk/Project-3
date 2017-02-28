@@ -10,6 +10,7 @@
 #include <utility>
 #include <cstdlib>
 #include <algorithm>
+
 using namespace std;
 
 static const int WINDOW_WIDTH = 768; //1024;
@@ -30,7 +31,7 @@ static const double FONT_SCALEDOWN = 760.0;
 static const double SCORE_Y = 3.8;
 static const double SCORE_Z = -10;
 
-static const int MS_PER_FRAME = 1;
+static const int MS_PER_FRAME = 20;
 
 static const double PI = 4 * atan(1.0);
 
@@ -42,8 +43,8 @@ struct SpriteInfo
 };
 
 static void convertToGlutCoords(double x, double y, double& gx, double& gy, double& gz);
-static void drawPrompt(string mainMessage, string secondMessage);
-static void drawScoreAndLives(string);
+static void drawPrompt(string mainMessage, string secondMessage, int bg);
+static void drawScoreAndLives(string, int bg);
 
 void GameController::initDrawersAndSounds()
 {
@@ -105,10 +106,11 @@ static void specialKeyboardEventCallback(int key, int x, int y)
 static void timerFuncCallback(int)
 {
     Game().doSomething();
+    glutPostRedisplay();
     glutTimerFunc(MS_PER_FRAME, timerFuncCallback, 0);
 }
 
-void GameController::run(int argc, char* argv[], GameWorld* gw, string windowTitle)
+void GameController::run(int argc, char* argv[], GameWorld* gw, string windowTitle, int bg)
 {
     gw->setController(this);
     m_gw = gw;
@@ -137,6 +139,9 @@ void GameController::run(int argc, char* argv[], GameWorld* gw, string windowTit
     glutDisplayFunc(displayGamePlayCallback);
     glutTimerFunc(MS_PER_FRAME, timerFuncCallback, 0);
     
+    m_bgShade = bg;
+    if (bg == LIGHT)
+        glClearColor(1.0, 1.0, 1.0, 0.0);
     glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
     glutMainLoop();
     delete m_gw;
@@ -249,7 +254,7 @@ void GameController::doSomething()
             m_nextStateAfterPrompt = quit;
             break;
         case prompt:
-            drawPrompt(m_mainMessage, m_secondMessage);
+            drawPrompt(m_mainMessage, m_secondMessage, m_bgShade);
         {
             int key;
             if (getLastKey(key) && key == '\r')
@@ -325,7 +330,7 @@ void GameController::displayGamePlay()
         }
     }
     
-    drawScoreAndLives(m_gameStatText);
+    drawScoreAndLives(m_gameStatText, m_bgShade);
     
     glutSwapBuffers();
 }
@@ -356,7 +361,6 @@ static void doOutputStroke(double x, double y, double z, double size, const char
         
         double len = glutStrokeLength(GLUT_STROKE_ROMAN, reinterpret_cast<const unsigned char*>(str)) / scaleDown;
         x = -len / 2;
-        //size = 1;
     }
     GLfloat scaledSize = static_cast<GLfloat>(size / FONT_SCALEDOWN);
     glPushMatrix();
@@ -379,28 +383,33 @@ static void outputStrokeCentered(double y, double z, const char* str, double siz
     doOutputStroke(0, y, z, size, str, true);
 }
 
-static void drawPrompt(string mainMessage, string secondMessage)
+static void drawPrompt(string mainMessage, string secondMessage, int bg)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glColor3f (1.0, 1.0, 1.0);
-    glLoadIdentity ();
+    if (bg == LIGHT)
+        glColor3f(0.0, 0.0, 0.0);
+    else
+        glColor3f(1.0, 1.0, 1.0);
+    glLoadIdentity();
     outputStrokeCentered(1, -5, mainMessage.c_str());
     outputStrokeCentered(-1, -5, secondMessage.c_str(),.5);
     glutSwapBuffers();
 }
 
-static void drawScoreAndLives(string gameStatText)
+static void drawScoreAndLives(string gameStatText, int bg)
 {
     static int RATE = 1;
     static GLfloat rgb[3] =
     { static_cast<GLfloat>(.6), static_cast<GLfloat>(.6), static_cast<GLfloat>(.6) };
+    double minStrength = (bg == LIGHT ? 0.3 : 0.6);
+    double maxStrength = (bg == LIGHT ? 0.8 : 1.0);
     for (int k = 0; k < 3; k++)
     {
         double strength = rgb[k] + randInt(-RATE, RATE) / 100.0;
-        if (strength < .6)
-            strength = .6;
-        else if (strength > 1.0)
-            strength = 1.0;
+        if (strength < minStrength)
+            strength = minStrength;
+        else if (strength > maxStrength)
+            strength = maxStrength;
         rgb[k] = static_cast<GLfloat>(strength);
     }
     glColor3f(rgb[0], rgb[1], rgb[2]);

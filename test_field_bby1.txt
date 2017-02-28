@@ -1,0 +1,64 @@
+****************************************************************
+*            w *  pf w                    w fp  * w            *
+*                      w                w                      *
+*              p         w   *    *   w         p              *
+*      *  f w*    **                        **    *w    * f    *
+*    *                         ww                         *    *
+*                 w  f       p    p       f  w                 *
+*                                                              *
+*  f                *    *  p      p  *    *                f  *
+*    *            f w         *  *         w              *    *
+*                  *           f            *                  *
+*      *                                                *      *
+*                         0          1                         *
+*                          * w ww w *                          *
+**            p                                  p            **
+*   *                                                      *   *
+*                    *   **          **   *                    *
+*             *                                  *             *
+*       f    w                                    w            *
+*      *          *       w          w       *          *     f*
+*   fw                     *        *                     wf   *
+*        *   w        *                  *        w   *        *
+*                 w  *                    *  w               f *
+* *         f  w             *  *              w  f          * *
+**                       f             f                      **
+*                 * w       *      *       w *                 *
+*             *   *                          *   *             *
+*              *        *              *        *              *
+*     *     *    f    fffffffffffffffffff            *     *   *
+*    f                   fffffffffffffff                    f  *
+*    *              *   *ff           ff *   *              *  *
+*                     w  ff  g   g    ff    w                  *
+*                     w fff  g  g g   fff     w                *
+*    *              *   *ff  g        ff   *   *          *    *
+*    f                   ff           ff          f            *
+*     *     *      fff  fffffffffffffff  f         *     *     *
+*              *        *fffffffffffffff    *        *         *
+*             *   *                          *   *             *
+*                 * w       *      *       w *                 *
+**                                     f                      **
+* *         f  w              *  *              w  f         * *
+*                 w  *                    *  w               f *
+*        *   w        *                  *        w   *        *
+*    w f                   *        *                   f w    *
+*      *          *       w          w       *          *      *
+*            w                                    w      f     *
+*     f       *                                  *             *
+*                    *   **          **   *                    *
+*   *                                                      *   *
+**            p                                  p            **
+*                          * w ww w *                          *
+*                         3          2                         *
+*      *                                                *      *
+*    f             *           f            *             f    *
+*    *            f w         *  *         w              *    *
+*                   *    *  p      p  *    *                f  *
+*                                                              *
+*                 w          p    p          w                 *
+*    *                         ww                         *    *
+*      *  f w*    **                        **    *w f  *      *
+*              p         w   *    *   w         p              *
+*                      w                w                      *
+*            w *  pf w                    w fp  * w            *
+****************************************************************

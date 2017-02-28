@@ -1,0 +1,17 @@
+colony: DumbAnt
+
+start:
+moveForward
+if I_was_blocked_from_moving then goto face_new_direction
+generateRandomNumber 5
+if last_random_number_was_zero then goto face_new_direction
+if i_am_standing_with_an_enemy then goto killthefucker
+goto start
+
+face_new_direction:
+faceRandomDirection
+goto start
+
+killthefucker:
+bite
+goto start

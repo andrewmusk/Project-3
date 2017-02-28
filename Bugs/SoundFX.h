@@ -64,7 +64,7 @@ class SoundFXController
         if ((now - lastPlayTime).count() >= 0.5) // at least 1/2 second ago
         {
             lastPlayTime = now;
-            std::system(("/usr/bin/afplay \"" + soundFile + "\" &").c_str());
+            //std::system(("/usr/bin/afplay \"" + soundFile + "\" &").c_str());
         }
     }
 	

@@ -9,4 +9,5 @@ dependencies: \
   /Users/andrewmusk/Documents/CS32/Bugs2/Bugs/freeglut.h \
   /Users/andrewmusk/Documents/CS32/Bugs2/Bugs/freeglut_std.h \
   /Users/andrewmusk/Documents/CS32/Bugs2/Bugs/freeglut_ext.h \
+  /Users/andrewmusk/Documents/CS32/Bugs2/Bugs/Compiler.h \
   /Users/andrewmusk/Documents/CS32/Bugs2/Bugs/Field.h

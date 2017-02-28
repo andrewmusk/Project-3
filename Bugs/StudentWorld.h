@@ -27,10 +27,32 @@ public:
     int getCurrentTicks() const;
     
     bool isRock(int x, int y) const;
+    
+    Actor* findFood(int x, int y) const;
+    
+    void add(int x, int y, Actor  * object);
+    
+    Actor* getRandomInsect(int x, int y, Actor* biter, int colony = -1);
+    
+    void wetInsects(int x, int y);
+    
+    void poisonInsects(int x, int y);
+    
+    bool checkDanger(Ant* a);
+    
+    Actor* findPheromone(int x, int y, int colony);
+    
+    void setAnts(int value, int colony);
+    
+    int getAnts(int colony);
 
 private:
     std::vector<Actor*> m_actorList[VIEW_HEIGHT][VIEW_WIDTH];
+    std::string m_AntsNames[4];
+    int m_nAnts[4];
     int gameTicks;
+    int m_size;
+    int m_winner;
 };
 
 #endif // STUDENTWORLD_H_
